@@ -1,94 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { Container, Form, Info, Input, Speed, Text, Wrapper } from "../Styles/Home";
 import { quotesArray, random } from "./Helper";
 import { words } from "./words";
 
 var current = 0;
 var correct = new Array(100).fill(0);
-
-const Container = styled.div`
-  background: #282a36;
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-`;
-
-const Wrapper = styled.div`
-  background: #282a36;
-  padding: 20px;
-  height: 60vh;
-  width: 80vw;
-  margin: 10px;
-  gap: 1em;
-  border-radius: 7px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const Text = styled.p`
-  line-height: 2rem;
-  margin: 10px auto;
-  color: white;
-  border-radius: 7px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  font-size: 19.5px;
-  background-color: #44475a;
-  width: 956px;
-  padding: 12px;
-`;
-
-const HR = styled.hr`
-  color: yellowgreen;
-  width: 80%;
-`;
-
-const Input = styled.input`
-  height: 20px;
-  margin-top: 2em;
-  width: 390px;
-  color: white;
-  padding: 7px;
-  font-size: 18px;
-  font-family: "Poppins", sans-serif;
-  border-radius: 7px;
-  border: 1px solid gray;
-  background-color: transparent;
-  text-align: center;
-`;
-
-const Info = styled.div`
-  display: flex;
-  padding: 8px;
-  color: white;
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  gap: 100px;
-  font-size: 13px;
-  height: 30px;
-  width: 790px;
-  margin-left: 60px;
-  /* background-color: green; */
-`;
-
-const Form = styled.form`
-  display: flex;
-  padding: 8px;
-  color: white;
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  font-weight: 200;
-  gap: 100px;
-  font-size: 13px;
-  height: 30px;
-  width: 790px;
-  margin-left: 60px;
-`;
-
-const Speed = styled.p``;
 
 const Word = ({ word, index }) => {
   var color;
@@ -109,21 +26,13 @@ var timeRunning = false,
 
 const Home = () => {
   const inputRef = useRef(null);
-  const outputRef = useRef(null);
-  const [duration, SetDuration] = useState(60);
   const [sentenceArr, setSentenceArr] = useState([]);
-  const [started, setStarted] = useState(false);
   const [speed, setSpeed] = useState(0);
   const [checked, setChecked] = useState(15);
-  const [errorIndex, setErrorIndex] = useState(0);
   const [highest, setHighest] = useState(0);
   const [input, setInput] = useState("");
-  const [cpm, setCpm] = useState(0);
-  const [wpm, setWpm] = useState(0);
   const [last, setLast] = useState(0);
   const [accuracy, setAccuracy] = useState(0);
-  const [isError, setIsError] = useState(false);
-  const [lastScore, setLastScore] = useState("0");
 
   const getRandomWords = (n) => {
     if (!n) n = checked;
@@ -145,31 +54,29 @@ const Home = () => {
     if (tempinput[tempinput.length - 1] === " ") return;
     setInput(tempinput);
     if (current == checked - 1 && tempinput === sentenceArr[checked - 1]) {
-      handleSubmit(tempinput)
+      handleSubmit(tempinput);
       setLast(speed);
-      localStorage.setItem("highest", Math.max(highest, speed));      if (highest < speed) setHighest(speed);
-      if(highest < speed) setHighest(speed)
+      localStorage.setItem("highest", Math.max(highest, speed));
+      if (highest < speed) setHighest(speed);
+      if (highest < speed) setHighest(speed);
       else setHighest(Number(localStorage.getItem("highest")));
-      timeClearer()
+      timeClearer();
       setInput("");
-      return 0;
+      return;
     }
   };
 
   const handleSubmit = (tempInput) => {
-    if (
-      input === sentenceArr[current] ||
-      tempInput === sentenceArr[current]
-    ) {
+    if (input === sentenceArr[current] || tempInput === sentenceArr[current]) {
       correct[current] = 1;
       correctNumber++;
     } else correct[current] = -1;
-    
+
     setAccuracy(((correctNumber / (current + 1)) * 100).toFixed(0));
     current++;
 
     if (current === sentenceArr.length) {
-      timeClearer();
+      //timeClearer();
       restart(checked);
     }
   };
@@ -198,7 +105,7 @@ const Home = () => {
   const restart = (number) => {
     correct.fill(0);
     current = 0;
-    getRandomWords(Number);
+    getRandomWords(number);
     setSpeed(0);
     setAccuracy(0);
     timeClearer();
