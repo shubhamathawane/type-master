@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Container, Form, Info, Input, Speed, Text, Wrapper } from "../Styles/Home";
+import { A, Container, Form, Info, Input, Speed, Text, Wrapper } from "../Styles/Home";
 import { quotesArray, random } from "./Helper";
 import { words } from "./words";
 
@@ -189,6 +189,8 @@ const Home = () => {
           onChange={handleInput}
           onKeyPress={handleKeyPress}
         />
+        <br /><br /><br />
+        <p>Created with ♥ by <A href="https://github.com/shubhamathawane/"> Shubham Athawane</A></p>
       </Wrapper>
     </Container>
   );

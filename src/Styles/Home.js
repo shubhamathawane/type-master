@@ -1,19 +1,17 @@
 import styled from "styled-components";
 
-
-
 export const Container = styled.div`
-  background: ${({theme}) => theme.bg};
-  color: ${({theme}) => theme.text};
+  background: ${({ theme }) => theme.bg};
+  color: ${({ theme }) => theme.text};
   height: 100vh;
   width: 100vw;
   position: relative;
-  `;
+`;
 
 export const Wrapper = styled.div`
-  background: ${({theme}) => theme.bg};
+  background: ${({ theme }) => theme.bg};
   padding: 20px;
-  color: %{({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   height: 60vh;
   width: 80vw;
   margin: 10px;
@@ -26,7 +24,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Text = styled.p`
-color: %{({theme}) => theme.text};
+  color: ${({ theme }) => theme.text};
   line-height: 2rem;
   margin: 10px auto;
   color: white;
@@ -47,21 +45,21 @@ export const HR = styled.hr`
 export const Input = styled.input`
   height: 20px;
   margin-top: 2em;
-  width: 390px;
-  color: white;
-  padding: 7px;
-  font-size: 18px;
-  font-family: "Poppins", sans-serif;
-  border-radius: 7px;
-  border: 1px solid gray;
-  background-color: transparent;
-  text-align: center;
+color: ${({ theme }) => theme.text};
+width: 390px;
+padding: 7px;
+font-size: 18px;
+font-family: "Poppins", sans-serif;
+border-radius: 7px;
+border: 1px solid gray;
+background-color: transparent;
+text-align: center;
 `;
 
 export const Info = styled.div`
   display: flex;
+  color: ${({ theme }) => theme.text};
   padding: 8px;
-  color: white;
   width: 100%;
   font-family: "Poppins", sans-serif;
   font-weight: 200;
@@ -76,9 +74,9 @@ export const Info = styled.div`
 export const Form = styled.form`
   display: flex;
   padding: 8px;
-  color: white;
   width: 100%;
   font-family: "Poppins", sans-serif;
+  color: ${({ theme }) => theme.text};
   font-weight: 200;
   gap: 100px;
   font-size: 13px;
@@ -88,3 +86,8 @@ export const Form = styled.form`
 `;
 
 export const Speed = styled.p``;
+
+
+export const A = styled.a`
+    color: ${({ theme }) => theme.git};
+`
